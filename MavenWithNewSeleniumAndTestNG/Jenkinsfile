@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Start Selenium Grid') {
+            steps {
+                dir('MavenWithNewSeleniumAndTestNG') {
+                    bat 'docker compose -f docker-compose.yml up -d'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                dir('MavenWithNewSeleniumAndTestNG') {
+                    bat 'mvn clean test'
+                }
+            }
+        }
+
+        stage('Stop Selenium Grid') {
+            steps {
+                dir('MavenWithNewSeleniumAndTestNG') {
+                    bat 'docker compose -f docker-compose.yml down'
+                }
+            }
+        }
+    }
+}
