@@ -1,4 +1,4 @@
-package adder_subtracter;
+package synchronization_adder_subtracter;
 
 import java.util.concurrent.Callable;
 
@@ -17,10 +17,13 @@ public class Adder implements Callable<Integer>
 	@Override
 	public Integer call() throws Exception
 	{
-		for (int i = 1; i <= 100; i++)
+		for (int i = 1; i <= 100000; i++)
 		{
-			x.setNum(x.getNum() + 1);
-			System.out.println(x.getNum());
+			synchronized (x)
+			{
+				x.setNum(x.getNum() + 1);
+//				System.out.println(x.getNum());
+			}
 		}
 		
 		return x.getNum();

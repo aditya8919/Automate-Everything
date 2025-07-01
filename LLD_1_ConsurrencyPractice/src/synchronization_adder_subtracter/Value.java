@@ -1,4 +1,4 @@
-package adder_subtracter;
+package synchronization_adder_subtracter;
 
 public class Value
 {
@@ -9,12 +9,12 @@ public class Value
 		this.num = num;
 	}
 	
-	public int getNum()
+	public synchronized  int getNum()
 	{
 		return num;
 	}
 
-	public void setNum(int num)
+	public synchronized  void setNum(int num)
 	{
 		this.num = num;
 	}
